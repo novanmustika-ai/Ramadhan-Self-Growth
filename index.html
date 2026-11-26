@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ramadan 30 Hari Self-Growth Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Ubah warna & font di sini */
+:root{--bg:#FAF6EE;--card:#FFFFFF;--ink:#2F3E34;--mute:#6C7A70;--sage:#6B8F71;--sage2:#4F7357;--gold:#C9A24D;--line:#E8E1D2;--soft:#EEF3EC;--hero1:#5E8467;--hero2:#3F6149;color-scheme:light dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14201A;--card:#1D2D24;--ink:#F3EBDA;--mute:#A9B6AB;--sage:#86AD8C;--sage2:#9CC4A2;--line:#2C4034;--soft:#223529;--hero1:#2A4535;--hero2:#1B3024}}
+:root[data-theme="dark"]{--bg:#14201A;--card:#1D2D24;--ink:#F3EBDA;--mute:#A9B6AB;--sage:#86AD8C;--sage2:#9CC4A2;--line:#2C4034;--soft:#223529;--hero1:#2A4535;--hero2:#1B3024}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='%23C9A24D' stroke-width='1'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E")}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:18px 16px 110px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;margin:0;line-height:1.2}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.top small{color:var(--mute)}
+.top h1{font-size:25px}
+.ico{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:18px;cursor:pointer}
+.hero{background:linear-gradient(150deg,var(--hero1),var(--hero2));color:#FAF3E0;border-radius:26px;padding:22px 20px;position:relative;overflow:hidden}
+.hero::after{content:"☪";position:absolute;right:-18px;top:-30px;font-size:150px;color:var(--gold);opacity:.16;transform:rotate(-14deg)}
+.hero .row{display:flex;gap:18px;align-items:center;position:relative;z-index:1}
+.ring{position:relative;width:112px;height:112px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:27px}
+.hero h2{font-size:30px}
+.chip{display:inline-block;margin-top:6px;padding:3px 12px;border-radius:99px;background:rgba(201,162,77,.25);color:#F1D898;font-size:13px;font-weight:500}
+.hero p{margin:12px 0 0;font-size:13.5px;opacity:.92;position:relative;z-index:1}
+.nav{display:flex;gap:8px;margin-top:14px;position:relative;z-index:1}
+.nav button{flex:1;min-height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#FAF3E0;font:500 14px 'Poppins',sans-serif;cursor:pointer}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 8px;text-align:center}
+.stat b{display:block;font-family:'Playfair Display',serif;font-size:24px;color:var(--sage2)}
+.stat span{font-size:12px;color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px}
+.card.gold{border:1.5px solid var(--gold);background:linear-gradient(var(--card),var(--card)) padding-box}
+.card h3{font-size:18px}
+.card .sub{color:var(--mute);font-size:13px;margin:2px 0 10px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.head em{font-style:normal;color:var(--mute);font-size:13px}
+.bar{height:7px;border-radius:9px;background:var(--soft);margin:8px 0 6px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:9px;background:var(--sage);transition:width .5s}
+.t{display:flex;align-items:center;gap:12px;min-height:44px;padding:4px 0;cursor:pointer;border-radius:10px}
+.t input{position:absolute;opacity:0;pointer-events:none}
+.box{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;color:transparent;font-size:14px;font-weight:700;transition:.2s}
+.t input:checked+.box{background:var(--sage);border-color:var(--sage);color:#fff;transform:scale(1.06)}
+.t input:focus-visible+.box{outline:3px solid var(--gold);outline-offset:2px}
+.t input:checked~span:last-child{color:var(--mute);text-decoration:line-through}
+.go{width:100%;min-height:46px;margin-top:10px;border:0;border-radius:14px;background:var(--gold);color:#2b2108;font:600 14px 'Poppins',sans-serif;cursor:pointer}
+.go.on{background:var(--sage);color:#fff}
+.cal{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:10px}
+.cal button{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);font:500 14px 'Poppins',sans-serif;color:var(--ink);cursor:pointer;min-height:44px;background:var(--card)}
+.cal button.cur{outline:2.5px solid var(--gold);outline-offset:1px}
+.rekap h4{font:600 14px 'Poppins',sans-serif;margin:16px 0 2px}.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mini div{background:var(--soft);border-radius:14px;padding:10px 6px;text-align:center}.mini b{display:block;font-family:'Playfair Display',serif;font-size:19px;color:var(--sage2)}.mini span{font-size:11.5px;color:var(--mute)}.rk{display:grid;grid-template-columns:112px 1fr 44px;align-items:center;gap:8px;font-size:13px}.rk .bar{margin:6px 0}.rk b{text-align:right;font-weight:600;color:var(--sage2)}.note{margin:14px 0 0;padding:10px 12px;border-radius:12px;background:var(--soft);font-size:13.5px}
+.foot{text-align:center;color:var(--mute);font-size:12.5px;margin-top:18px}
+.foot button{background:none;border:0;color:var(--mute);text-decoration:underline;font:inherit;cursor:pointer;min-height:44px}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:space-around;background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav.tabs button{flex:1;min-height:48px;background:none;border:0;color:var(--mute);font:500 11px 'Poppins',sans-serif;cursor:pointer}
+nav.tabs button span{display:block;font-size:20px}
+nav.tabs button.on{color:var(--sage2)}
+#toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:13.5px;z-index:9;transition:.3s;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.pop{animation:pop .6s}
+@keyframes pop{40%{transform:scale(1.05)}}
+.fade{animation:fade .6s both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<nav class="tabs" aria-label="Menu utama">
+  <button class="on"><span>🏠</span>Beranda</button>
+  <button data-soon><span>📋</span>Hari Ini</button>
+  <button data-soon><span>📖</span>Jurnal</button>
+  <button data-soon><span>🗓️</span>Kalender</button>
+  <button id="goRekap"><span>📊</span>Rekap</button>
+</nav>
+<div id="toast" role="status"></div>
+<script>
+/* ====== DATA ====== */
+var TOTAL = 16; // 15 checklist + 1 tantangan
+var CATS = [
+ {k:'ibadah',n:'Ibadah',i:'🕌',t:['Puasa hari ini','Salat 5 waktu','Tarawih atau qiyamul lail','Tilawah Al-Qur’an','Dzikir dan doa']},
+ {k:'akhlak',n:'Akhlak dan sosial',i:'🤝',t:['Sedekah hari ini','Menjaga lisan','Berbuat baik pada seseorang','Kabari keluarga atau sahabat']},
+ {k:'sehat',n:'Kebiasaan sehat',i:'🌿',t:['Sahur dan berbuka sehat','Minum air cukup','Tidur cukup','Olahraga ringan']},
+ {k:'fokus',n:'Digital dan fokus',i:'🎯',t:['Batasi media sosial','Selesaikan 1 prioritas harian']}
+];
+var CH = ['Tulis niat dan alasan Ramadanmu','Kirim pesan terima kasih ke satu orang','Sedekah tanpa diketahui siapa pun','Salat sunnah dua rakaat di waktu dhuha','Tidak mengeluh seharian','Telepon orangtua atau keluarga','Bersihkan satu sudut rumah lalu donasikan barang layak pakai','Baca terjemah satu surat pendek','Minta maaf pada satu orang','Tulis 10 hal yang kamu syukuri',
+ 'Traktir takjil untuk orang sekitar','Puasa media sosial selama 24 jam','Doakan 5 orang yang kamu sayangi','Rapikan keuangan dan catat pengeluaran','Jalan kaki 20 menit setelah tarawih','Hubungi teman lama','Bantu pekerjaan orang lain tanpa diminta','Tulis surat untuk dirimu di Idulfitri','Hafalkan satu doa baru','Beri apresiasi tulus ke rekan kerja atau teman',
+ 'Mulai qiyamul lail di malam ganjil','Doa panjang di sepertiga malam terakhir','Siapkan zakat fitrah','Lunasi atau cicil satu utang atau janji','Perbanyak istigfar setelah salat','Sedekah terbaik yang kamu mampu','Siapkan bingkisan untuk keluarga','Tulis komitmen kebiasaan baik setelah Ramadan','Maafkan satu kesalahan orang lain','Syukuri 30 hari lalu rencanakan Idulfitri'];
+function phase(d){
+ if(d<=10) return {n:'Fase Rahmat',s:'Bangun kebiasaan dan niat yang kuat. Mulai pelan, yang penting konsisten.'};
+ if(d<=20) return {n:'Fase Ampunan',s:'Perbaiki diri dan hubungan. Perbanyak istigfar dan memaafkan.'};
+ return {n:'Fase Pembebasan',s:'Sepuluh malam terakhir. Carilah Lailatul Qadar di malam ganjil dengan doa dan qiyam.'};
+}
+/* ====== STATE ====== */
+var S = {day:1, done:{}, theme:null};
+try { var raw = localStorage.getItem('ramadan-dash'); if(raw){ var p = JSON.parse(raw); if(p && p.done) S = p; } } catch(e){}
+function save(){ try{ localStorage.setItem('ramadan-dash', JSON.stringify(S)); }catch(e){} }
+function applyTheme(){ if(S.theme) document.documentElement.setAttribute('data-theme', S.theme); }
+applyTheme();
+function arr(d){ return S.done[d] || []; }
+function pct(d){ return arr(d).length / TOTAL; }
+/* ====== HITUNG ====== */
+function stats(){
+ var s=0, d=S.day, tun=0, tot=0, i;
+ if(pct(d)<.75) d--;
+ while(d>=1 && pct(d)>=.75){ s++; d--; }
+ for(i=1;i<=30;i++){ tot+=pct(i); if(pct(i)>=.75) tun++; }
+ return {streak:s, tuntas:tun, total:Math.round(tot/30*100)};
+}
+/* ====== REKAP ====== */
+function recapCard(cls){
+ var wk=[[1,7,'Minggu 1'],[8,14,'Minggu 2'],[15,21,'Minggu 3'],[22,28,'Minggu 4'],[29,30,'Hari penutup']], i, j, all=0, best=0, bestD=0, filled=0, sum=0, w='', c2='';
+ for(i=1;i<=30;i++){ var q=pct(i); all+=arr(i).length; if(arr(i).length){ filled++; sum+=q; } if(q>best){ best=q; bestD=i; } }
+ wk.forEach(function(x){ var s=0, n=x[1]-x[0]+1; for(j=x[0];j<=x[1];j++) s+=pct(j); var v=Math.round(s/n*100); w+='<div class="rk"><span>'+x[2]+'</span><div class="bar"><i style="width:'+v+'%"></i></div><b>'+v+'%</b></div>'; });
+ var low=null, lowV=101;
+ CATS.forEach(function(c){ var n=0; for(j=1;j<=30;j++) arr(j).forEach(function(id){ if(id.indexOf(c.k)===0) n++; }); var v=Math.round(n/(c.t.length*30)*100); if(v<lowV){ lowV=v; low=c.n; } c2+='<div class="rk"><span>'+c.n.split(' ')[0]+'</span><div class="bar"><i style="width:'+v+'%"></i></div><b>'+v+'%</b></div>'; });
+ var cn=0; for(j=1;j<=30;j++) if(arr(j).indexOf('ch')>-1) cn++;
+ var cv=Math.round(cn/30*100); c2+='<div class="rk"><span>Tantangan</span><div class="bar"><i style="width:'+cv+'%"></i></div><b>'+cv+'%</b></div>';
+ var tot=stats().total, msg;
+ if(tot===0) msg='Mulai centang item hari ini, rekap akan terisi otomatis.';
+ else if(tot<30) msg='Awal yang baik. Konsisten kecil tiap hari lebih berarti daripada sempurna sesekali. Kategori yang paling perlu perhatian: '+low+'.';
+ else if(tot<70) msg='Ritmemu sudah terbentuk. Tingkatkan kategori dengan angka terendah: '+low+'.';
+ else msg='Luar biasa. Pertahankan kebiasaan ini setelah Ramadan.';
+ return '<section class="card rekap '+cls+'" id="rekap"><div class="head"><h3>Rekap progres</h3><em>'+tot+'% dari target</em></div><p class="sub">Ringkasan perkembanganmu selama 30 hari.</p><div class="mini"><div><b>'+(bestD?'Hari '+bestD:'-')+'</b><span>Hari terbaik ('+Math.round(best*100)+'%)</span></div><div><b>'+(filled?Math.round(sum/filled*100):0)+'%</b><span>Rata-rata hari terisi</span></div><div><b>'+all+'</b><span>dari '+(TOTAL*30)+' item</span></div></div><h4>Per minggu</h4>'+w+'<h4>Per kategori</h4>'+c2+'<p class="note">'+msg+'</p></section>';
+}
+/* ====== RENDER ====== */
+var first = true;
+function render(){
+ var d=S.day, ph=phase(d), p=pct(d), st=stats(), C=2*Math.PI*44, off=C*(1-p), cls=first?'fade':'';
+ var h = '<div class="top"><div><small>Assalamu’alaikum 🌙</small><h1>Ramadan Self-Growth</h1></div><button class="ico" id="theme" aria-label="Ganti mode terang atau gelap">◐</button></div>';
+ h += '<section class="hero '+cls+(p===1?' pop':'')+'"><div class="row"><div class="ring"><svg width="112" height="112" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="8"/><circle cx="50" cy="50" r="44" fill="none" stroke="#E7C873" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+off.toFixed(1)+'"/></svg><b>'+Math.round(p*100)+'%</b></div><div><h2>Hari ke-'+d+'</h2><span class="chip">'+ph.n+'</span></div></div><p>'+ph.s+'</p><div class="nav"><button id="prev" '+(d<=1?'disabled style="opacity:.4"':'')+'>Hari sebelumnya</button><button id="next" '+(d>=30?'disabled style="opacity:.4"':'')+'>Hari berikutnya</button></div></section>';
+ h += '<div class="stats '+cls+'"><div class="stat"><b>'+st.total+'%</b><span>Progres total</span></div><div class="stat"><b>'+st.streak+'</b><span>Hari beruntun</span></div><div class="stat"><b>'+st.tuntas+'/30</b><span>Hari tuntas</span></div></div>';
+ var chDone = arr(d).indexOf('ch')>-1;
+ h += '<section class="card gold '+cls+'"><div class="head"><h3>Tantangan hari ke-'+d+'</h3></div><p class="sub" style="margin-bottom:0;color:var(--ink);font-size:15px;margin-top:6px">'+CH[d-1]+'</p><button class="go'+(chDone?' on':'')+'" data-id="ch">'+(chDone?'✓ Selesai':'Tandai selesai')+'</button></section>';
+ CATS.forEach(function(c){
+  var n=0, items='';
+  c.t.forEach(function(t,j){ var id=c.k+j, on=arr(d).indexOf(id)>-1; if(on) n++; items += '<label class="t"><input type="checkbox" data-id="'+id+'" '+(on?'checked':'')+'><span class="box">✓</span><span>'+t+'</span></label>'; });
+  h += '<section class="card '+cls+'"><div class="head"><h3>'+c.i+' '+c.n+'</h3><em>'+n+' dari '+c.t.length+'</em></div><div class="bar"><i style="width:'+(n/c.t.length*100)+'%"></i></div>'+items+'</section>';
+ });
+ h += recapCard(cls);
+ h += '<section class="card '+cls+'"><h3>Kalender 30 hari</h3><p class="sub" style="margin-bottom:0">Ketuk tanggal untuk melihat harinya. Makin pekat, makin tuntas.</p><div class="cal">';
+ for(var i=1;i<=30;i++){ var q=pct(i); h += '<button data-day="'+i+'" class="'+(i===d?'cur':'')+'" style="background:color-mix(in srgb,var(--sage) '+Math.round(q*100)+'%,var(--card));'+(q>.5?'color:#fff;border-color:transparent':'')+'" aria-label="Hari '+i+', '+Math.round(q*100)+' persen">'+i+'</button>'; }
+ h += '</div></section><div class="foot">Nama Brand Anda<br>Tautan toko Anda<br><button id="reset">Hapus semua progres</button></div>';
+ document.getElementById('app').innerHTML = h;
+ first = false;
+}
+/* ====== AKSI ====== */
+var tt;
+function toast(m){ var e=document.getElementById('toast'); e.textContent=m; e.className='show'; clearTimeout(tt); tt=setTimeout(function(){ e.className=''; },2400); }
+function toggle(id){
+ var a=arr(S.day).slice(), k=a.indexOf(id);
+ if(k>-1) a.splice(k,1); else a.push(id);
+ S.done[S.day]=a; save(); render();
+ if(a.length===TOTAL && k===-1) toast('Alhamdulillah, hari ke-'+S.day+' tuntas 100% ✨');
+ else if(k===-1 && [10,20,30].indexOf(S.day)>-1 && a.length>=12) toast('Milestone hari ke-'+S.day+' hampir tercapai. Lanjutkan!');
+}
+document.getElementById('app').addEventListener('click', function(e){
+ var t=e.target, el;
+ if((el=t.closest('[data-id]')) && el.tagName==='BUTTON'){ toggle(el.getAttribute('data-id')); return; }
+ if((el=t.closest('input[data-id]'))){ toggle(el.getAttribute('data-id')); return; }
+ if((el=t.closest('[data-day]'))){ S.day=+el.getAttribute('data-day'); save(); render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+ if(t.closest('#prev') && S.day>1){ S.day--; save(); render(); return; }
+ if(t.closest('#next') && S.day<30){ S.day++; save(); render(); return; }
+ if(t.closest('#theme')){
+  var cur=document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  S.theme = cur==='dark'?'light':'dark'; applyTheme(); save(); return;
+ }
+ if(t.closest('#reset') && confirm('Hapus semua progres 30 hari?')){ S.done={}; S.day=1; save(); render(); toast('Progres direset'); }
+});
+document.getElementById('goRekap').addEventListener('click', function(){ var r=document.getElementById('rekap'); if(r) r.scrollIntoView({behavior:'smooth'}); });
+document.querySelectorAll('[data-soon]').forEach(function(b){ b.addEventListener('click', function(){ toast('Halaman ini hadir di tahap berikutnya'); }); });
+render();
+</script>
+</body>
+</html>
